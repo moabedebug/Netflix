@@ -8,11 +8,12 @@ export async function signup(req, res) {
             return res.status(400).json({ message:"todos os campos são obrigatórios" })
         }
 
-        const emailRegex = /^[^\s@]+[^\s@]+\.[^\s@]+$/;
-        if(emailRegex.test(email)){
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if(!emailRegex.test(email)){
             res.status(400).json({ message: "Email inválido" })
         }
-        if(password.legth < 6){
+
+        if(password.length < 6){
             res.status(400).json({ message: "A senha deve conter mais de 6 caracteres" })
         }
 
@@ -26,6 +27,8 @@ export async function signup(req, res) {
             return res.status(400).json({ message: "Nome de usuário já existe, tente outro" })
         }
 
+
+
         const PORFILE_PICS = ["/avatar1.png", "/avatar2.png", "/avatar3.png"]
         const image = PORFILE_PICS[Math.floor(Math.random * PORFILE_PICS.length)]
 
@@ -38,6 +41,10 @@ export async function signup(req, res) {
 
         await newUser.save()
 
+        if(newUser.save()){
+            return res.status(200).json({ message: "Usuário cadastrado com sucesso" })
+        }
+
     }catch(error){
         console.log("Error no Singup Controller", error.message)
         res.status(500).json({ message: "Erro interno do servidor" })
@@ -45,7 +52,7 @@ export async function signup(req, res) {
 }
 
 export async function login(req, res) {
-    res.send("Login route")
+    res.send("Login route OK")
 }
 
 export async function logout(req, res) {

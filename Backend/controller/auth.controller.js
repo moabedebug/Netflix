@@ -30,7 +30,7 @@ export async function signup(req, res) {
 
 
         const PORFILE_PICS = ["/avatar1.png", "/avatar2.png", "/avatar3.png"]
-        const image = PORFILE_PICS[Math.floor(Math.random * PORFILE_PICS.length)]
+        const image = PORFILE_PICS[Math.floor(Math.random() * PORFILE_PICS.length)]
 
         const newUser = new User({
             email,

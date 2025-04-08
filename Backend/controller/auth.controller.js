@@ -10,11 +10,11 @@ export async function signup(req, res) {
 
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if(!emailRegex.test(email)){
-            res.status(400).json({ message: "Email inválido" })
+            return res.status(400).json({ message: "Email inválido" })
         }
 
         if(password.length < 6){
-            res.status(400).json({ message: "A senha deve conter mais de 6 caracteres" })
+            return res.status(400).json({ message: "A senha deve conter mais de 6 caracteres" })
         }
 
         const existingUserByEmail = await User.findOne({ email:email })

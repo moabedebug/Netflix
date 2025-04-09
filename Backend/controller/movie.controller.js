@@ -51,3 +51,13 @@ export async function getMovieSimiliar(req, res) {
         res.status(500).json({ message: "Erro interno do servidor" })
     }
 }
+
+export async function getMovieByCategory(req, res){
+    const { category } = req.params
+    try{
+        const data = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${category}?language=pt-BR&page=1`)
+        res.status(200).json({ category: data.results })
+    }catch(error){
+        res.status(500).json({ message: "Erro interno do servidor" })
+    }
+}

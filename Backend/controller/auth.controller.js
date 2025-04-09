@@ -60,7 +60,35 @@ export async function signup(req, res) {
 }
 
 export async function login(req, res) {
-    res.send("Login route OK")
+    try{
+        const { email, password } = req.body
+
+        if(!email || !password) {
+            return res.status(400).json({ message:"tod  ios" })
+        }
+
+        const user = await User.findOne({ email:email })
+        if(!user) {
+            return res.status(400).json({ message:"Email ou senha inválidos" })
+        }
+
+        const isPasswordCorrect = await bcryptjs.compare(password, user.password)
+        if(!isPasswordCorrect){
+            return res.status(400).json({ messagem: "Email ou senha inválidos" })
+        }
+
+        generateTokenAndSetCookie(user._id, res)
+        res.status(200).json({
+            message: "Usuário Logado",
+            user: {
+                ...user._doc,
+                password: ""
+            }
+        })
+    }catch (error) {
+        console.log("Error no Login controller", error.message)
+        res.status(500).json({ message: "Erro interno do servidor" })
+    }
 }
 
 export async function logout(req, res) {

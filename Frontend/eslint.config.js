@@ -20,6 +20,10 @@ export default [
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
     },
+    "env": {
+    "node": true,
+    "browser": true
+  },
     rules: {
       ...js.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,

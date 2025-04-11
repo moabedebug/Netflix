@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Link } from "react-router-dom"
 
 const SignUpPage = () => {
@@ -6,7 +7,7 @@ const SignUpPage = () => {
   const [password, setPassword] = useState("")
 
   const handleSignUp = (e) => {
-    e.preventeDefault()
+    e.preventDefault()
     console.log(email, password, username)
   }
 
@@ -20,7 +21,7 @@ const SignUpPage = () => {
 
       <div className='flex justify-center items-center mt-20 mx-3'>
         <div className='w-full max-w-md p-8 space-x-6 bg-black/60 rounded-lg shadow-md'>
-          <h1 className=' text-center text-white text-2x1 font-bold md-4'> Cadastre-se </h1>
+          <h1 className=' text-center text-white text-2xl font-bold md-4'> Cadastre-se </h1>
 
           <form className='space-y-4' onSubmit={handleSignUp}>
             <div>
@@ -40,9 +41,9 @@ const SignUpPage = () => {
 
             <div>
               <label htmlFor="username" className='text-sm font-medium text-gray-300 block'>
-                Username
+                Nome 
               </label>
-              <input type="email"
+              <input type="username"
                 className='w-full px-3 py-2 mt-1 border-gray-700 rounded-md bg-transparent text-white
                 focus:outline-none focus:ring'  
                 placeholder='Ex: João'

@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage"
 import SignUpPage from "./pages/SignUpPage"
 
 import { Footer } from "./components/Footer";
+import { Toaster } from "react-hot-toast";
 
 export default function App() {
     return (
@@ -14,7 +15,9 @@ export default function App() {
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/signup" element={<SignUpPage/>} />
       </Routes>
+      <Toaster/>
       <Footer/>
       </>
     )
   }
+  

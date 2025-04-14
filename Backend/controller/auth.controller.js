@@ -2,6 +2,11 @@ import { User } from "../models/user.model.js"
 import bcryptjs from "bcryptjs";
 import { generateTokenAndSetCookie } from "../utils/generateToken.js";
 
+function formatUser(user) {
+    const { password, __v, ...userData } = user._doc;
+    return userData;
+}
+
 export async function signup(req, res) {
     try{
         const { email, password, username } = req.body
@@ -47,11 +52,8 @@ export async function signup(req, res) {
         
         res.status(201).json({ 
             message: "Usuário criado com sucesso",
-            User: {
-                ...newUser._doc,
-                password: "",
-            }
-            })
+            user: formatUser(newUser)
+        })
         
     }catch(error){
         console.log("Error no Singup Controller", error.message)
@@ -80,10 +82,7 @@ export async function login(req, res) {
         generateTokenAndSetCookie(user._id, res)
         res.status(200).json({
             message: "Usuário Logado",
-            user: {
-                ...user._doc,
-                password: ""
-            }
+            user: formatUser(user)
         })
     }catch (error) {
         console.log("Error no Login controller", error.message)
@@ -103,7 +102,8 @@ export async function logout(req, res) {
 
 export async function authCheck(req, res) {
     try{
-        res.status(200).json({ user: req.user  })
+        console.log("req.user:", req.user)
+        res.status(200).json({ success: true, user: formatUser(req.user) })
     }catch(error){
         console.log("Error no authCheck controller", error.message)
         res.status(500).json({ message: "Erro interno do servidor" })

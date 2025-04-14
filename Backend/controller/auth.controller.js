@@ -32,7 +32,7 @@ export async function signup(req, res) {
         const salt = await bcryptjs.genSalt(10)
         const hashedPassword = await bcryptjs.hash(password, salt)
 
-        const PORFILE_PICS = ["/avatar1.png", "/avatar2.png", "/avatar3.png"]
+        const PROFILE_PICS = ["/avatar1.png", "/avatar2.png", "/avatar3.png"]
         const image = PORFILE_PICS[Math.floor(Math.random() * PORFILE_PICS.length)]
 
         const newUser = new User({
@@ -74,7 +74,7 @@ export async function login(req, res) {
 
         const isPasswordCorrect = await bcryptjs.compare(password, user.password)
         if(!isPasswordCorrect){
-            return res.status(400).json({ messagem: "Email ou senha inválidos" })
+            return res.status(400).json({ message: "Email ou senha inválidos" })
         }
 
         generateTokenAndSetCookie(user._id, res)

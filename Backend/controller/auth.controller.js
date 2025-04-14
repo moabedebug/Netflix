@@ -7,7 +7,7 @@ export async function signup(req, res) {
         const { email, password, username } = req.body
 
         if(!email || !password || !username) {
-            return res.status(400).json({ message:"todos os campos são obrigatórios" })
+            return res.status(400).json({ message:"Todos os campos são obrigatórios" })
         }
 
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -16,7 +16,7 @@ export async function signup(req, res) {
         }
 
         if(password.length < 6){
-            return res.status(400).json({ message: "A senha deve conter mais de 6 caracteres" })
+            return res.status(400).json({ message: "A senha deve conter 6 ou mais caracteres" })
         }
 
         const existingUserByEmail = await User.findOne({ email:email })

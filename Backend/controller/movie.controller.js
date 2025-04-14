@@ -16,7 +16,7 @@ export async function getTrendingMovie(req, res){
 export async function getMovieTrailers(req, res) {
     const { id } = req.params;
     try{
-        const data = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${id}/videos?language=pt-BR`)
+        const data = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`)
         res.json({ Trailer: data.results })
     }catch (error){
         if(error.message.includes("404")){

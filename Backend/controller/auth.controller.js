@@ -100,3 +100,12 @@ export async function logout(req, res) {
         res.status(500).json({ message: "Erro interno do servidor" })
     }
 }
+
+export async function authCheck(req, res) {
+    try{
+        res.status(200).json({ user: req.user  })
+    }catch(error){
+        console.log("Error no authCheck controller", error.message)
+        res.status(500).json({ message: "Erro interno do servidor" })
+    }
+}

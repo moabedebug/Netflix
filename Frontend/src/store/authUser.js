@@ -5,6 +5,7 @@ import {create} from "zustand"
 export const useAuthStore = create((set) => ({
     user: null,
     isSigninUp: false,
+    isCheckingAuth: true,
     signup: async (credentials) => {
         set({isSigninUp:true})
         try{
@@ -18,5 +19,14 @@ export const useAuthStore = create((set) => ({
     },
     login: async () => {},
     logout: async () => {},
-    authCheck: async () => {}
+    authCheck: async () => {
+        set({isCheckingAuth: true})
+        try{
+            const response = await axios.get("/api/v1/auth/authCheck")
+            set({user:response.data.user, isCheckingAuth: false})
+        }catch(error){
+            set({isCheckingAuth: false, user:null})
+            // toast.error(error.response.data.message || "Ocorreu um erro")
+        }
+    }
 }))

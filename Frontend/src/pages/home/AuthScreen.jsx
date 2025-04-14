@@ -1,10 +1,16 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import { ChevronRight } from "lucide-react"
 
 const AuthScreen = () =>  {
    const [email, setEmail] = useState("")
+   const navigate = useNavigate()
+
+   const handleFormSubmit= (e) => {
+    e.preventDefault()
+    navigate("/signup?email=" + email)
+   }
 
   return (
     <div className="hero-bg relative">
@@ -20,7 +26,7 @@ const AuthScreen = () =>  {
           <p className="text-lg mb-4">Assista em qualquer lugar. Cancele a qualquer momento</p>
           <p className="mb-4">Pronto para assistir? Insira seu e-mail para criar ou começar sua assinatura</p>
           
-          <form className="flex flex-col md:flex-row gap-4 w-1/2">
+          <form className="flex flex-col md:flex-row gap-4 w-1/2" onSubmit={handleFormSubmit}>
             <input 
               type="email"
               className='p-2 rounded flex-1 bg-black/80 border-gray-700'  

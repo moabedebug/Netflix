@@ -11,6 +11,16 @@ const HomeScreen = () =>  {
 
   const year = trendingContent?.release_date?.split("-") [0] || trendingContent?.first_air_date.split("-")[0] || " "
 
+    if(!trendingContent) 
+      return (
+        <div className="h-screen text-white relative">
+          <Navbar/>
+          <div
+            className="absolute top-0 left-0 w-full h-full bg-black/70 flex items-center justify-center -z-10 shimmer"
+          />
+        </div>
+      );
+    
     return (
       <>
       <div className="relative h-screen text-white">

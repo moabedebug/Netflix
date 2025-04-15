@@ -113,9 +113,7 @@ const AuthScreen = () =>  {
           <div className="flex-1 relative overflow-hidden">
             <img src="/device-pile.png" alt="Device image" className="mt-4 z-20 relative" />
             <video 
-              className="absolute top-1/2 left-2 -translate-x-1/2 h-4/6 z-10 max-w-[63%]"
-              aria-hidden="true"
-              title="Vídeo decorativo de demonstração"
+              className="absolute top-2 left-1/2 -translate-x-1/2  h-4/6 z-10 max-w-[63%]"
               playsInline
               autoPlay={true}
               muted

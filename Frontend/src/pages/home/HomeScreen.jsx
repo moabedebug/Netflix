@@ -77,7 +77,7 @@ const HomeScreen = () =>  {
                 className="bg-gray-500/70 hover:bg-gray-500 text-white py-2 px-4 rounded flex items-center"  
               >
               <Info className="size-6 inline-block mr-2"/>
-                More info
+                Mais informações
               </Link>
             </div>
 

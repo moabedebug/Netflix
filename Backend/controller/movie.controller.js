@@ -16,7 +16,7 @@ export async function getTrendingMovie(req, res){
 export async function getMovieTrailers(req, res) {
     const { id } = req.params;
     try{
-        const data = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`)
+        const data = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${id}/videos?language=pt-BR`)
         res.json({ Trailer: data.results })
     }catch (error){
         if(error.message.includes("404")){
@@ -42,11 +42,11 @@ export async function getMovieDetails(req, res) {
     }
 }
 
-export async function getMovieSimiliar(req, res) {
+export async function getMovieSimilar(req, res) {
     const { id } = req.params
     try {
         const data = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${id}/similar?language=pt-BR&page=1`)
-        res.status(200).json({ similiar: data.results })
+        res.status(200).json({ similar: data.results })
     } catch (error) {
         res.status(500).json({ message: "Erro interno do servidor" })
     }

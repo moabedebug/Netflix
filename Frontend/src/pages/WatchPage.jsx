@@ -1,23 +1,15 @@
+import { Link, useParams } from "react-router-dom"
+import { useContentStore } from "../store/content"
 import { useEffect, useState, useRef } from "react"
+import  ReactPlayer  from "react-player"
 import axios from "axios"
 
 import { Navbar } from "../components/Navbar"
 import { WatchPageSkeleton } from "../components/skeletons/WatchPageSkeleton"
+import { formatReleaseDate } from "../utils/dateFunctions"
 
-import { Link, useParams } from "react-router-dom"
-import { useContentStore } from "../store/content"
-
-import  ReactPlayer  from "react-player"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { ORIGINAL_IMG_BASE_URL, SMALL_IMG_BASE_URL } from "../utils/constants"
-
-function formatReleaseDate(date){
-  return new Date(date).toLocaleDateString("pt-BR", {
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-  })
-}
 
 const WatchPage = () => {
   const { id } = useParams()
@@ -193,20 +185,23 @@ const WatchPage = () => {
               </h3>
 
               <div className="flex overflow-x-scroll scrollbar-hide gap-4 pb-4 group" ref={sliderRef}>
-                {similarContent.map((content) => (
-                  <Link 
-                    to={`/watch/${content.id}`}
-                    key={content.id} 
-                    className="w-52 flex-none"
-                  >
+                {similarContent.map((content) => {
+                  if(content.poster_path === null) return null
+                  return(
+                    <Link 
+                      to={`/watch/${content.id}`}
+                      key={content.id} 
+                      className="w-52 flex-none"
+                    >
                     <img 
                       src={SMALL_IMG_BASE_URL+content?.poster_path}
                       alt="Poster Path"
                       className="w-full h-auto rounded-md"
                     />
                     <h4 className="mt-2 text-lg font-semibold">{content.title || content.name}</h4>
-                  </Link>
-                ))}
+                    </Link>
+                  )
+                })}
                 <ChevronRight
                   className="absolute top-1/2 -translate-y-1/2 right-2 w-8 h-8
                              opacity-0 group-hover:opacity-100 transition-all duration-300 cursor-pointer

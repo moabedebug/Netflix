@@ -102,6 +102,19 @@ const WatchPage = () => {
     </div>
   )
 
+  if(!content){
+    return(
+      <div className="bg-black text-white h-screen">
+        <div className="max-w-6xl mx-auto">
+          <Navbar/>
+          <div className="text-center mx-auto px-4 py-8 h-full mt-40">
+            <h2 className="text-2-xl sm:text-5xl font-bold text-balance">Conteúdo não encontrado!</h2>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="bg-black min-h-screen text-white">
       <div className="mx-auto container px-4 py-8 h-full">

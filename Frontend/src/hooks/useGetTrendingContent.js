@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 
-import { useContenteStore } from "../store/content"
+import { useContentStore } from "../store/content"
 
 const useGetTrendingContent = () => {
   const [trendingContent, setTrendingContent] = useState(null)
-  const { contentType } = useContenteStore()
+  const { contentType } = useContentStore()
 
   useEffect(() => {
     const getTrendingContent = async () => {

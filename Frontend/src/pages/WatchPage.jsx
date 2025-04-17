@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react"
 import axios from "axios"
 
 import { Navbar } from "../components/Navbar"
+import { WatchPageSkeleton } from "../components/skeletons/WatchPageSkeleton"
 
 import { Link, useParams } from "react-router-dom"
 import { useContentStore } from "../store/content"
@@ -103,6 +104,12 @@ const WatchPage = () => {
     sliderRef.current.scrollBy({ left: sliderRef.current.offsetWidth, behavior: "smooth" })
   }
 
+  if(loading) return (
+    <div className="min-h-screen bg-black p-10">
+      <WatchPageSkeleton/>
+    </div>
+  )
+
   return (
     <div className="bg-black min-h-screen text-white">
       <div className="mx-auto container px-4 py-8 h-full">
@@ -163,18 +170,18 @@ const WatchPage = () => {
             <div className="mb-4 md:mb-0">
               <h2 className="text-5xl font-bold text-balance">{content?.title || content?.name}</h2>
 
-              {/* <p className="mt-2 text-lg">
+              <p className="mt-2 text-lg">
                 {formatReleaseDate(content?.release_date || content?.first_air_date)} |{" "}
                 {content?.adult ? (
                   <span className="text-red-600">18+</span>
                 ) : (
                   <span className="text-red-600">PG-13</span>
                 )}{" "}
-              </p> */}
+              </p>
               <p className="mt-4 text-lg">{content?.overview}</p>
             </div>
             <img 
-              src={ORIGINAL_IMG_BASE_URL + content.poster_path} 
+              src={ORIGINAL_IMG_BASE_URL + content?.poster_path} 
               alt="Poster image" 
               className="max-h-[600px] rounded-md"
             />
@@ -193,7 +200,7 @@ const WatchPage = () => {
                     className="w-52 flex-none"
                   >
                     <img 
-                      src={SMALL_IMG_BASE_URL+content.poster_path}
+                      src={SMALL_IMG_BASE_URL+content?.poster_path}
                       alt="Poster Path"
                       className="w-full h-auto rounded-md"
                     />

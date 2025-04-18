@@ -28,7 +28,7 @@ export async function searchPerson(req, res) {
 
     }catch(error){
         console.log("Error no searchPerson controller", error.message)
-        res.status(500).json({ message: "Error interno no servidor" })
+        res.status(404).json({ message: "Error interno no servidor" })
     }
 }
 
@@ -112,7 +112,7 @@ export async function removeItemFromSearchHistory(req, res) {
             }
         })
 
-        res.status(500).json({ message: "Item removido do histórico de pesquisa" })
+        res.status(200).json({ message: "Item removido do histórico de pesquisa" })
     }catch(error){
         res.status(500).json({ message: "Error interno no servidor" })
     }

@@ -33,9 +33,9 @@ export const Navbar = () =>  {
                     Séries
                 </Link>
                 |
-                <Link to="/history" className="hover:underline" >
+                {/* <Link to="/history" className="hover:underline" >
                     Histórico de pesquisa
-                </Link>
+                </Link> */}
             </div>
         </div>
 

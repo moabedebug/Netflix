@@ -27,7 +27,8 @@
 <p align="center">
   <img src="/Frontend/public/hero-screenshot.png" alt="Página Inicial" width="300" /> &nbsp;
   <img src="/Frontend/public/home-screenshot.png" alt="Tela Principal" width="300" /> &nbsp;
-  <img src="/Frontend/public/watch-screenshot.png" alt="Assistir Trailer" width="300" />
+  <img src="/Frontend/public/watch-screenshot.png" alt="Assistir Trailer" width="300" /> &nbsp;
+  <img src="/Frontend/public/watch2-screenshot.png" alt="Assistir Trailer" width="300" />
 </p>
 
 ---

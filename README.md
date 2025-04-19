@@ -17,8 +17,8 @@
 ## 🚀 Stack de Tecnologias
 
 - **Frontend**: React.js, Vite, React Router, Tailwind CSS, Zustand, Axios, React Player, React Hot Toast, Lucide‑React  
-- **Backend**: Node.js, Express.js, MongoDB, Mongoose, JWT, bcrypt.js, dotenv, cookie-parser, Axios  
-- **Ferramentas**: ESLint, Prettier, Nodemon  
+- **Backend**: Node.js, Express.js, MongoDB, Mongoose, JWT, bcrypt.js, dotenv, cookie-parser, Axios, Nodemon
+- **Ferramentas**: Insomnia  
 
 ---
 

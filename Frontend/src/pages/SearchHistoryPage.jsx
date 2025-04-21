@@ -5,7 +5,6 @@ import { SMALL_IMG_BASE_URL } from "../utils/constants"
 import { formatDate } from "../utils/dateFunctions"
 import { Trash } from "lucide-react"
 import toast from "react-hot-toast"
-import { set } from "mongoose"
 
 const SearchHistoryPage = () => {
     const [searchHistory, setSearchHistory] = useState([])

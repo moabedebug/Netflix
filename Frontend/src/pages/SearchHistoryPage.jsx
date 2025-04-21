@@ -3,6 +3,9 @@ import axios from "axios"
 import { Navbar } from "../components/Navbar"
 import { SMALL_IMG_BASE_URL } from "../utils/constants"
 import { formatDate } from "../utils/dateFunctions"
+import { Trash } from "lucide-react"
+import toast from "react-hot-toast"
+import { set } from "mongoose"
 
 const SearchHistoryPage = () => {
     const [searchHistory, setSearchHistory] = useState([])
@@ -18,6 +21,16 @@ const SearchHistoryPage = () => {
         }
         getSearchHistory()
     },[])
+    
+    const handleDelete = async (entry) => {
+        try {
+            await axios.delete(`api/v1/search/history/${entry.id}`)
+            setSearchHistory(searchHistory.filter((item) => item.id !== entry.id))
+            toast.success("Histórico deletado com sucesso")
+        } catch (error) {
+            toast.error("Falha ao deletar o histórico")
+        }
+    }
 
     if(searchHistory?.length === 0 ){
         return(
@@ -32,6 +45,7 @@ const SearchHistoryPage = () => {
             </div>
         )
     }
+
 
   return (
     <div className="bg-black text-white min-h-screen">
@@ -65,6 +79,10 @@ const SearchHistoryPage = () => {
                         >
                             {entry.searchType[0].toUpperCase() + entry.searchType.slice(1)}
                         </span>
+                        <Trash
+                            className="size-5 ml-4 cursor-pointer hover:fill-red-600 hover:text-red-600"
+                            onClick={() => handleDelete(entry)}
+                        />
                     </div>
                 ))}
             </div>
